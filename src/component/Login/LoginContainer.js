@@ -3,17 +3,28 @@ import { connect } from "react-redux";
 import Login from "./Login";
 import withRedirect from "../../hoc/withRedirect";
 
+import {
+  changeEmail,
+  changePassword,
+  loginUser,
+} from "../../redux/loginReducer";
+
 class LoginContainer extends Component {
   render() {
-    return <Login />;
+    debugger
+    return <Login {...this.props} />;
   }
 }
 
 const HomeRedirectComponent = withRedirect(LoginContainer, "/", true);
 
 export default connect(
-  (state) => ({
-    name: 1,
-  }),
-  {}
+  (state) => {
+    return { ...state.login };
+  },
+  {
+    changeEmail,
+    changePassword,
+    loginUser,
+  }
 )(HomeRedirectComponent);
