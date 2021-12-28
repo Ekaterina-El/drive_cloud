@@ -1,13 +1,20 @@
-import { withRouter } from "react-router-dom";
+import { Switch, withRouter } from "react-router-dom";
 import { Route } from "react-router-dom";
+import HomeContainer from "./component/Home/HomeContainer";
 
-import LoginContainer from "./Login/LoginContainer";
+import LoginContainer from "./component/Login/LoginContainer";
 
 function App() {
   debugger;
   return (
     <div className="App">
-      <Route path="/login" component={LoginContainer} />
+      <Switch>
+      <Route exact path="/login" render={() => <LoginContainer />} />
+      <Route exact path="/" render={() => <HomeContainer />} />
+      <Route path="*">
+        <div>Error 404</div>
+      </Route>
+      </Switch>
     </div>
   );
 }
