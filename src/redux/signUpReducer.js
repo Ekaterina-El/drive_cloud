@@ -4,10 +4,11 @@ import { setUserProfile } from "./authReducer";
 const initState = {
   email: "",
   password: "",
+  repPass: "",
   isFetching: false,
 };
 
-const loginReducer = (state = initState, { type, payload }) => {
+const signUpReducer = (state = initState, { type, payload }) => {
   switch (type) {
     case CHANGE_EMAIL:
       return {
@@ -21,6 +22,12 @@ const loginReducer = (state = initState, { type, payload }) => {
         password: payload.value,
       };
 
+    case CHANGE_REP_PASS:
+      return {
+        ...state,
+        repPass: payload.value,
+      };
+
     case SET_FETCHING:
       return {
         ...state,
@@ -32,9 +39,10 @@ const loginReducer = (state = initState, { type, payload }) => {
   }
 };
 
-const CHANGE_EMAIL = "CHANGE_EMAIL";
-const CHANGE_PASSWORD = "CHANGE_PASSWORD";
-const SET_FETCHING = "SET_FETCHING";
+const CHANGE_EMAIL = "SIGN_UP_CHANGE_EMAIL";
+const CHANGE_PASSWORD = "SIGN_UP_CHANGE_PASSWORD";
+const CHANGE_REP_PASS = "SIGN_UP_CHANGE_REP_PASS";
+const SET_FETCHING = "SIGN_UP_SET_FETCHING";
 
 export const changeEmail = (value) => {
   debugger;
@@ -49,40 +57,32 @@ export const changePassword = (value) => ({
   payload: { value },
 });
 
+export const changeRepPass = (value) => ({
+  type: CHANGE_REP_PASS,
+  payload: { value },
+});
+
 export const setFetching = (status) => ({
   type: SET_FETCHING,
   payload: { status },
 });
 
-export const loginUser = () => (dispatch, getState) => {
-  const { email, password } = getState().login;
-debugger
+export const signUpUser = () => (dispatch, getState) => {
+  const { email, password, repPass } = getState().signUp;
   dispatch(setFetching(true));
 
-  AuthAPI.signInUser(
+  const profile = {
     email,
-    password,
-    (profile) => {
-      dispatch(setUserProfile(profile));
-      dispatch(setFetching(false));
-    },
-    (error) => {
-      alert(error);
-      dispatch(setFetching(false));
-    }
-  );
+    login: email.split("@")[0],
+    id: null
+  };
 
-  // setTimeout(() => {
+  AuthAPI.signUpUser(profile, password).then((profile) => {
+    debugger
+    dispatch(setUserProfile(profile))
+    dispatch(setFetching(false));
+  });
 
-  //   const profile = {
-  //     uid: "ru_123",
-  //     email: "hackerrussia@yandex.ru",
-  //     login: "ELKA"
-  //   }
-
-  //   dispatch(setUserProfile(profile))
-  //   dispatch(setFetching(false));
-  // }, 3000);
 };
 
-export default loginReducer;
+export default signUpReducer;

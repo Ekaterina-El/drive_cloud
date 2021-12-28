@@ -2,7 +2,7 @@ import { AuthAPI } from "../api/api";
 
 const initState = {
   profile: {
-    uid: null,
+    id: null,
     login: null,
     email: null,
   },

@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Login = ({email, password, changeEmail, changePassword, loginUser, isFetching}) => {
   const handleChangeEmail = e => changeEmail(e.target.value)
@@ -9,6 +10,7 @@ const Login = ({email, password, changeEmail, changePassword, loginUser, isFetch
       <input type="text" value={email} onChange={handleChangeEmail}/>
       <input type="password" value={password} onChange={handleChangePassword} />
       <button onClick={loginUser} disabled={isFetching}>Войти</button>
+      <NavLink to={"/signup"}>У меня нет аккаунта</NavLink>
     </div>
   );
 };
