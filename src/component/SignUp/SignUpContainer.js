@@ -5,15 +5,18 @@ import withRedirect from "../../hoc/withRedirect";
 import SignUp from "./SignUp";
 
 import {
+  changeName,
   changeEmail,
   changeRepPass,
   changePassword,
   signUpUser,
+  clearError
 } from "../../redux/signUpReducer";
 
 class SignUpContainer extends Component {
   render() {
-    return <SignUp {...this.props} />;
+    debugger
+    return <SignUp {...this.props}/>;
   }
 }
 
@@ -24,9 +27,11 @@ export default connect(
     return { ...state.signUp };
   },
   {
+    changeName,
     changeEmail,
     changePassword,
     changeRepPass,
     signUpUser,
+    clearError
   }
 )(HomeRedirectComponent);
