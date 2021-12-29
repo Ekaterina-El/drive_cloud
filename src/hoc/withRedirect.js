@@ -11,7 +11,7 @@ const withRedirect = (Component, path, authed) => {
   }
 
   return connect((state) => {
-    return { isAuthed: state.auth.profile.id != null };
+    return { isAuthed: state.auth.profile.uid != null };
   }, {})(MyRedirect);
 };
 

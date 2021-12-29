@@ -128,11 +128,10 @@ export const signUpUser = () => (dispatch, getState) => {
   const profile = {
     email,
     login: email.split("@")[0],
-    id: null,
+    uid: null,
   };
 
   AuthAPI.signUpUser(profile, password).then((profile) => {
-    debugger;
     dispatch(setUserProfile(profile));
     dispatch(setFetching(false));
   });

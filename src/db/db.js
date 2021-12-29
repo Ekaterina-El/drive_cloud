@@ -70,7 +70,7 @@ export const signIn = (email, password) => {
     // Get user by id => User
     (userCred) => ({
       email,
-      id: userCred.user.uid,
+      uid: userCred.user.uid,
     })
   );
 };

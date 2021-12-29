@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Switch, withRouter } from "react-router-dom";
 import { Route } from "react-router-dom";
 import HomeContainer from "./component/Home/HomeContainer";
+import Loader from "./component/Loader/Loader";
 import LoginContainer from "./component/Login/LoginContainer";
 import SignUpContainer from "./component/SignUp/SignUpContainer";
 
@@ -27,10 +28,6 @@ const App = ({ authMe, isAppFetching }) => {
       </Switch>
     </div>
   );
-};
-
-const Loader = () => {
-  return <div>Loading...</div>;
 };
 
 export default withRouter(

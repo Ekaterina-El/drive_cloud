@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import ErrorBlock from "../ErrorBlock/ErrorBlock";
 import s from "./SignUp.module.css";
 
 const SignUp = ({
@@ -14,9 +15,9 @@ const SignUp = ({
   signUpUser,
   isFetching,
   error,
-  clearError
+  clearError,
 }) => {
-  debugger
+  debugger;
   const handleChangeName = (e) => changeName(e.target.value);
   const handleChangeEmail = (e) => changeEmail(e.target.value);
   const handleChangePassword = (e) => changePassword(e.target.value);
@@ -24,53 +25,53 @@ const SignUp = ({
 
   return (
     <>
-    {error !== "" &&
-      <div className={s.errorBlock}>
-        <div className={s.error}>
-          <div>Ошибка</div>
-          <div>{error}</div>
-          <button className={s.btn} onClick={clearError} >О`кей</button>
+      {error !== "" && <ErrorBlock error={error} clearError={clearError} />}
+
+      <div className={s.wrapper}>
+        <div className={s.header}>
+          <h1>Вы находитесь на сайте Portfolive</h1>
+          <h2>Для продолжения пройдите регистрацию</h2>
         </div>
-      </div>
-    }
 
-    <div className={s.wrapper}>
-      <div className={s.header}>
-        <h1>Вы находитесь на сайте Portfolive</h1>
-        <h2>Для продолжения пройдите регистрацию</h2>
-      </div>
+        <div className={s.form}>
+          <input
+            className={s.mb2}
+            type="text"
+            placeholder="Имя"
+            value={name}
+            onChange={handleChangeName}
+          />
+          <input
+            className={s.mb2}
+            type="email"
+            onChange={handleChangeEmail}
+            placeholder="Email"
+            value={email}
+          />
+          <input
+            className={s.mb2}
+            type="password"
+            placeholder="Пароль"
+            onChange={handleChangePassword}
+            value={password}
+          />
+          <input
+            type="password"
+            placeholder="Повторите пароль"
+            onChange={handleChangeRepPass}
+            value={repeatPass}
+          />
+        </div>
 
-      <div className={s.form}>
-        <input className={s.mb2} type="text" placeholder="Имя" value={name} 
-          onChange={handleChangeName}
-        />
-        <input
-          className={s.mb2}
-          type="email"
-          onChange={handleChangeEmail}
-          placeholder="Email"
-          value={email}
-        />
-        <input
-          className={s.mb2}
-          type="password"
-          placeholder="Пароль"
-          onChange={handleChangePassword}
-          value={password}
-        />
-        <input
-          type="password"
-          placeholder="Повторите пароль"
-          onChange={handleChangeRepPass}
-          value={repeatPass}
-        />
+        <button
+          className={s.authBtn}
+          onClick={signUpUser}
+          disabled={isFetching}
+        >
+          Зарегистрироваться
+        </button>
+        <NavLink to="/login">У меня есть аккунт</NavLink>
       </div>
-
-      <button className={s.authBtn} onClick={signUpUser} disabled={isFetching}>
-        Зарегистрироваться
-      </button>
-      <NavLink to="/login">У меня есть аккунт</NavLink>
-    </div>
     </>
   );
 };
