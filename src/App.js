@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { connect } from "react-redux";
 import { Switch, withRouter } from "react-router-dom";
 import { Route } from "react-router-dom";
+import AddPostContainer from "./component/AddPost/AddPostContainer";
 import HomeContainer from "./component/Home/HomeContainer";
 import Loader from "./component/Loader/Loader";
 import LoginContainer from "./component/Login/LoginContainer";
@@ -22,6 +23,7 @@ const App = ({ authMe, isAppFetching }) => {
         <Route exact path="/login" render={() => <LoginContainer />} />
         <Route exact path="/signUp" render={() => <SignUpContainer />} />
         <Route exact path="/" render={() => <HomeContainer />} />
+        <Route exact path="/add-post" render={() => <AddPostContainer />} />
         <Route path="*">
           <div>Error 404</div>
         </Route>

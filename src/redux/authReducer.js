@@ -5,6 +5,7 @@ const initState = {
     uid: null,
     login: null,
     email: null,
+    posts: []
   },
 
   isAppFetching: true

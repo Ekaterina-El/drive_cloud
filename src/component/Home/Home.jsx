@@ -1,6 +1,7 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
-const Home = ({ uid, name, email }) => {
+const Home = ({ uid, name, email, setSelectedFiles }) => {
   return (
     <div>
       Главная
@@ -9,6 +10,7 @@ const Home = ({ uid, name, email }) => {
         <li>Имя: {name}</li>
         <li>Email: {email}</li>
       </ul>
+      <NavLink to="/add-post">Новая запись</NavLink>
     </div>
   );
 };

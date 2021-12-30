@@ -1,5 +1,4 @@
 import { getUsers, signUp, signIn } from "../db/db";
-import { randomBetween } from "../utils/functions";
 
 export const AuthAPI = {
   authProfile() {

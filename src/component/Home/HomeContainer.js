@@ -9,10 +9,11 @@ class HomeContainer extends React.Component {
   }
 }
 
-export default connect((state) => ({
-  uid: state.auth.profile.uid,
-  email: state.auth.profile.email,
-  name: state.auth.profile.name,
-}), {})(
-    withRedirect(HomeContainer, "/login", false)
-);
+export default connect(
+  (state) => ({
+    uid: state.auth.profile.uid,
+    email: state.auth.profile.email,
+    name: state.auth.profile.name,
+  }),
+  {}
+)(withRedirect(HomeContainer, "/login", false));
