@@ -56,7 +56,6 @@ export const setFetching = (status) => ({
 
 export const loginUser = () => (dispatch, getState) => {
   const { email, password } = getState().login;
-debugger
   dispatch(setFetching(true));
 
   AuthAPI.signInUser(
@@ -71,18 +70,6 @@ debugger
       dispatch(setFetching(false));
     }
   );
-
-  // setTimeout(() => {
-
-  //   const profile = {
-  //     uid: "ru_123",
-  //     email: "hackerrussia@yandex.ru",
-  //     login: "ELKA"
-  //   }
-
-  //   dispatch(setUserProfile(profile))
-  //   dispatch(setFetching(false));
-  // }, 3000);
 };
 
 export default loginReducer;

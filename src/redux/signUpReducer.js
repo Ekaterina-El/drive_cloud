@@ -121,13 +121,12 @@ export const signUpUser = () => (dispatch, getState) => {
     dispatch(setError(error));
     return
   }
-  debugger
 
   dispatch(setFetching(true));
 
   const profile = {
     email,
-    login: email.split("@")[0],
+    name,
     uid: null,
   };
 

@@ -6,6 +6,7 @@ import {
   getDocs,
   setDoc,
   doc,
+  getDoc,
 } from "firebase/firestore";
 
 import {
@@ -32,11 +33,11 @@ const auth = getAuth();
 
 const db = getFirestore();
 
-export const addUser = async (userProfile, id) => {
-  const newUserRef = doc(collection(db, "users"));
+export const addUser = async (userProfile, uid) => {
+  const newUserRef = doc(collection(db, "users"), `/${uid}`);
   const updatedProfile = {
     ...userProfile,
-    id,
+    uid,
   };
 
   return setDoc(newUserRef, updatedProfile).then((_) => {
@@ -45,11 +46,11 @@ export const addUser = async (userProfile, id) => {
 };
 
 export const getUsers = async () => {
-  const q = await getDocs(collection(db, "users"));
-  q.forEach((doc) => {
-    const data = doc.data();
-    debugger;
-  });
+  // const q = await getDocs(collection(db, "users"));
+  // q.forEach((doc) => {
+  //   const data = doc.data();
+  //   debugger;
+  // });
 };
 
 export function signUp(userProfile, password) {
@@ -66,11 +67,22 @@ export function signUp(userProfile, password) {
 }
 
 export const signIn = (email, password) => {
-  return signInWithEmailAndPassword(auth,email, password).then(
+  return signInWithEmailAndPassword(auth, email, password).then(
     // Get user by id => User
-    (userCred) => ({
-      email,
-      uid: userCred.user.uid,
-    })
+    (userCred) => {
+      return getUserByUid(userCred.user.uid);
+    }
   );
+};
+
+export const getUserByUid = (uid) => {
+  const ref = doc(db, `users/${uid}`);
+  return getDoc(ref)
+    .then((snapshot) => {
+      const data = snapshot.data()
+      return data
+    })
+    .catch((error) => {
+      return error
+    });
 };
