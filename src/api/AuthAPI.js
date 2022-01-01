@@ -1,8 +1,7 @@
-import { getUsers, signUp, signIn } from "../db/db";
+import {signIn, signUp} from '../db/UsersDB'
 
 const AuthAPI = {
   authProfile() {
-    getUsers();
     const profile = {
       uid: "ru_123",
       email: "hackerrussia@yandex.ru",

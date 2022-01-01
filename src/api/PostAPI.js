@@ -1,4 +1,5 @@
-import { addFilesToStore, addPostIDToUserNote, addPostToDB } from "../db/db";
+import { addFilesToStore } from "../db/FilesDB";
+import { addPostIDToUserNote, addPostToDB } from "../db/PostsDB";
 
 export const PostAPI = {
   addPost(title, files, uid, onError) {
