@@ -1,5 +1,5 @@
 import { addFilesToStore } from "../db/FilesDB";
-import { addPostIDToUserNote, addPostToDB } from "../db/PostsDB";
+import { addPostIDToUserNote, addPostToDB, getPostByIdFromDB } from "../db/PostsDB";
 
 export const PostAPI = {
   addPost(title, files, uid, onError) {
@@ -19,4 +19,10 @@ export const PostAPI = {
       onError
     );
   },
+
+  getPostById(postId, onSuccess, onError) {
+    getPostByIdFromDB(postId)
+    .then(data => onSuccess(data))
+    .catch(err => onError(err.message))
+  }
 };

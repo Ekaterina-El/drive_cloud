@@ -5,6 +5,7 @@ import {
   Timestamp,
   updateDoc,
   arrayUnion,
+  getDoc,
 } from "firebase/firestore";
 import { db } from "./db";
 
@@ -24,3 +25,13 @@ export const addPostIDToUserNote = (uid, postId) => {
     posts: arrayUnion(postId.toString()),
   });
 };
+
+export const getPostByIdFromDB = (postId) => {
+  const postRef = doc(db, `posts/${postId}`)
+  return getDoc(postRef)
+  .then(snp => {
+    const data = snp.data()
+    debugger
+    return data
+  })
+}

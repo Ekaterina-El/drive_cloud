@@ -14,6 +14,7 @@ export default connect(
     uid: state.auth.profile.uid,
     email: state.auth.profile.email,
     name: state.auth.profile.name,
+    posts: state.auth.profile.posts
   }),
   {}
 )(withRedirect(HomeContainer, "/login", false));

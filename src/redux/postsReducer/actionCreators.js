@@ -2,6 +2,7 @@ import {
   SET_SELECTED_FILES,
   CHANGE_POST_TITLE,
   CHANGE_IS_FETCHING,
+  SET_CURRENT_POST_DATA,
 } from "./const.js";
 
 export const setSelectedFiles = (files) => ({
@@ -24,3 +25,10 @@ export const changeIsFetching = (value) => ({
     value,
   },
 });
+
+export const setCurrentPostData = data => ({
+  type: SET_CURRENT_POST_DATA,
+  payload: {
+    data
+  }
+})

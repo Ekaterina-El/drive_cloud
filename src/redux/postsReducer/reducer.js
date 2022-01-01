@@ -1,4 +1,4 @@
-import {} from "./const";
+import { SET_CURRENT_POST_DATA } from "./const";
 import {
   initState,
   SET_SELECTED_FILES,
@@ -36,6 +36,13 @@ export const postsReducer = (state = initState, { type, payload }) => {
           isFetching: payload.value,
         },
       };
+    }
+
+    case SET_CURRENT_POST_DATA: {
+      return {
+        ...state,
+        currentPostData: payload.data
+      }
     }
 
     default:
