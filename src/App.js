@@ -8,7 +8,7 @@ import Loader from "./component/Loader/Loader";
 import LoginContainer from "./component/Login/LoginContainer";
 import SignUpContainer from "./component/SignUp/SignUpContainer";
 
-import { authMe } from "./redux/authReducer";
+import { authMe } from "./redux/authReducer/thunks";
 
 const App = ({ authMe, isAppFetching }) => {
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { AuthAPI } from "../api/api";
+import AuthAPI from "../api/AuthAPI";
 import { setUserProfile } from "./authReducer";
 
 const initState = {

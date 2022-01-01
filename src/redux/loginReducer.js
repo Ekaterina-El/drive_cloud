@@ -1,5 +1,5 @@
-import { AuthAPI } from "../api/api";
-import { setUserProfile } from "./authReducer";
+import AuthAPI from "../api/AuthAPI";
+import { setUserProfile } from "./authReducer/actionCreators";
 
 const initState = {
   email: "",

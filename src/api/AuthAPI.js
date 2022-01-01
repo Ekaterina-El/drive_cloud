@@ -1,6 +1,6 @@
 import { getUsers, signUp, signIn } from "../db/db";
 
-export const AuthAPI = {
+const AuthAPI = {
   authProfile() {
     getUsers();
     const profile = {
@@ -8,14 +8,11 @@ export const AuthAPI = {
       email: "hackerrussia@yandex.ru",
       login: "ELKA",
     };
-
-    // const isAuthed = randomBetween(0, 1);
     const isAuthed = false;
     return isAuthed ? profile : null;
   },
 
   signInUser(email, password, onSuccess, onError) {
-    
     return signIn(email, password)
       .then((user) => {
         onSuccess(user);
@@ -27,3 +24,5 @@ export const AuthAPI = {
     return signUp(profile, password);
   },
 };
+
+export default AuthAPI;
