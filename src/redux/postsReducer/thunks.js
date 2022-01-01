@@ -1,4 +1,4 @@
-import { PostAPI } from "../../api/filesAPI";
+import { PostAPI } from "../../api/PostAPI";
 
 export const addPost = () => (dispatch, getState) => {
   const { selectedFiles, postTitle } = getState().files.newPost;

@@ -6,7 +6,7 @@ import {
   CHANGE_IS_FETCHING,
 } from "./const.js";
 
-export const filesReducer = (state = initState, { type, payload }) => {
+export const postsReducer = (state = initState, { type, payload }) => {
   switch (type) {
     case SET_SELECTED_FILES: {
       return {

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import withRedirect from "../../hoc/withRedirect";
 import AddPost from "./AddPost";
 
-import { setSelectedFiles, changePostTitle, addPost } from "../../redux/filesReducer";
+import { setSelectedFiles, changePostTitle, addPost } from "../../redux/postsReducer";
 
 class AddPostContainer extends Component {
   render() {

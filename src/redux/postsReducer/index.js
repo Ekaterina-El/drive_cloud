@@ -1,4 +1,4 @@
-export { filesReducer } from "./reducer.js";
+export { postsReducer } from "./reducer.js";
 export {
   changeIsFetching,
   changePostTitle,
