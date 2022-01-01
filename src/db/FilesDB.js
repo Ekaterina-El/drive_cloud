@@ -1,5 +1,11 @@
 import { users_files_dir } from "../utils/consts";
-import { ref, uploadBytes } from "firebase/storage";
+import {
+  getDownloadURL,
+  getMetadata,
+  listAll,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
 import { storage } from "./db";
 
 export const addFilesToStore = (uid, files, onSuccess, onError) => {
@@ -25,4 +31,30 @@ export const addFileToStore = (uid, file, postId, onError) => {
       debugger;
       onError(err);
     });
+};
+
+const getMetadataOfDoc = async (refDoc) => {
+  return await getMetadata(refDoc).then(async (meta) => {
+    const docData = {
+      ref: refDoc,
+      name: meta.name,
+      size: meta.size,
+      created: meta.timeCreated,
+      updated: meta.updated,
+    };
+    docData.url = await getDownloadURL(refDoc);
+    return docData;
+  });
+};
+
+export const getFilesListOfPost = async (userId, postId) => {
+  const folder = ref(storage, `${users_files_dir}/${userId}/${postId}`);
+
+  const list = await listAll(folder)
+  const data = await list.items.map(async (refDoc) => {
+    const d = await getMetadataOfDoc(refDoc);
+    return d;
+  });
+
+  return Promise.all(data);
 };

@@ -16,7 +16,7 @@ class PostDetailsContainer extends Component {
   componentDidMount() {
     const {postId, userId} = this.props.match.params;
 
-    this.props.getPost(postId);
+    this.props.getPost(userId, postId);
   }
 
   render() {

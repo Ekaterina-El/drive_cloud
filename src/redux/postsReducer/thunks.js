@@ -1,4 +1,4 @@
-import { setCurrentPostData } from "./actionCreators";
+import { setCurrentPostData, setCurrentPostFiles } from "./actionCreators";
 import { PostAPI } from "../../api/PostAPI";
 
 export const addPost = () => (dispatch, getState) => {
@@ -6,16 +6,20 @@ export const addPost = () => (dispatch, getState) => {
   const uid = getState().auth.profile.uid;
 
   PostAPI.addPost(postTitle, selectedFiles, uid, (err) => {
-    debugger;
   });
 };
 
-export const getPost = (postId) => (dispatch) => {
+export const getPost = (userId, postId) => (dispatch) => {
   PostAPI.getPostById(
     postId,
     (data) => {
       dispatch(setCurrentPostData(data))
-      debugger;
+      PostAPI.getPostFilesList(userId, postId).then(
+        filesList => {
+          debugger
+          dispatch(setCurrentPostFiles(filesList))
+        }
+      )
     },
     (err) => alert(err)
   );

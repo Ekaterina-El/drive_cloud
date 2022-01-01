@@ -1,4 +1,4 @@
-import { SET_CURRENT_POST_DATA } from "./const";
+import { SET_CURRENT_POST_DATA, SET_CURRENT_POST_FILES } from "./const";
 import {
   initState,
   SET_SELECTED_FILES,
@@ -42,6 +42,16 @@ export const postsReducer = (state = initState, { type, payload }) => {
       return {
         ...state,
         currentPostData: payload.data
+      }
+    }
+
+    case SET_CURRENT_POST_FILES: {
+      return {
+        ...state,
+        currentPostData: {
+          ...state.currentPostData,
+          files: payload.files
+        }
       }
     }
 

@@ -3,6 +3,7 @@ export {
   changeIsFetching,
   changePostTitle,
   setSelectedFiles,
-  setCurrentPostData
+  setCurrentPostData,
+  setCurrentPostFiles
 } from "./actionCreators";
 export { addPost, getPost } from "./thunks";
